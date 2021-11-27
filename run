@@ -1,0 +1,88 @@
+#!/usr/bin/env python3
+
+import subprocess
+import sys
+import os
+
+from time import time
+
+stdlib = "libc"
+debug = len(sys.argv) >= 2 and sys.argv[1] == "debug"
+excecutable_name = "a.out"
+
+link_libraries = ["-lpcre2-8", "-lcrypto"]
+
+link_lib_string = link_libraries[0]
+
+for i in range(1, len(link_libraries)):
+    link_lib_string += " " + link_libraries[i]
+
+build_dir = "build/release" if not debug else "build/debug"
+
+if not os.path.exists(f"./{build_dir}"):
+    subprocess.call(f"mkdir -p {build_dir}", shell=True)
+
+compiledirs = [
+    "./src",
+    "./AoC_C_utils/src",
+    "./packages/hashmap.c"
+]
+
+def compiledir(path, ninja):
+    filenames = []
+    for d, _, files in os.walk(path):
+        for file in files:
+            name, ext = os.path.splitext(file)
+            if ext == ".c":
+                filenames.append(name)
+                ninja.write(f"build $build_dir/{name}.o: cc {d}/{name}.c\n")
+    return filenames
+
+with open("build.ninja", "w") as ninja:
+    ninja.write(f"build_dir = {build_dir}\n")
+    ninja.write(f"c_flags = -stdlib={stdlib}\n")
+    ninja.write(f"l_flags = {link_lib_string}\n")
+    ninja.write(f"""
+rule cc
+    command = clang{" -g" if debug else " -O3"} -o $out -c $in
+""")
+    ninja.write(f"""
+rule link
+    command = clang $c_flags -o $out $in $l_flags
+
+""")
+    filenames = []
+    for d in compiledirs:
+        filenames.extend(compiledir(d, ninja))
+
+    ninja.write(f"\nbuild {excecutable_name}: link")
+    for name in filenames:
+        ninja.write(f" $\n    $build_dir/{name}.o")
+    ninja.write("\n")
+
+
+t0 = time()
+
+subprocess.call("ninja", shell=True)
+
+comp_time = time() - t0
+
+print(f"Compile time: {comp_time:.3f} s")
+
+if not debug:
+    run_command = [f"./{excecutable_name}"]
+
+    for i in range(1, len(sys.argv)):
+        run_command.append(sys.argv[i])
+
+    s = f"Running {excecutable_name}:"
+    print(s)
+    print("-" * len(s) * 2)
+
+    t = time()
+    subprocess.run(run_command)
+    t = time() - t
+    print("-" * len(s) * 2)
+    print(f"Run time: {t:.3f} s")
+else:
+    subprocess.call(f"gdb {excecutable_name}", shell=True)

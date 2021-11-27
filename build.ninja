@@ -1,0 +1,16 @@
+build_dir = build/release
+c_flags = -stdlib=libc
+l_flags = -lpcre2-8 -lcrypto
+
+rule cc
+    command = clang -O3 -o $out -c $in
+
+rule link
+    command = clang $c_flags -o $out $in $l_flags
+
+build $build_dir/day1.o: cc ./src/day1.c
+build $build_dir/main.o: cc ./src/main.c
+
+build a.out: link $
+    $build_dir/day1.o $
+    $build_dir/main.o

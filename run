@@ -28,7 +28,7 @@ if not os.path.exists(f"./{build_dir}"):
 compiledirs = [
     "./src",
     "./AoC_C_utils/src",
-    # "./packages/hashmap.c"
+    "./hashmap.c"
 ]
 
 def compiledir(path, ninja):

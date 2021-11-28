@@ -8,6 +8,7 @@ rule cc
 rule link
     command = clang $c_flags -o $out $in $l_flags
 
+build $build_dir/day3.o: cc ./src/day3.c
 build $build_dir/day1.o: cc ./src/day1.c
 build $build_dir/day2.o: cc ./src/day2.c
 build $build_dir/main.o: cc ./src/main.c
@@ -18,8 +19,10 @@ build $build_dir/bitfield.o: cc ./AoC_C_utils/src/bitfield.c
 build $build_dir/deque.o: cc ./AoC_C_utils/src/deque.c
 build $build_dir/str_split_iter.o: cc ./AoC_C_utils/src/str_split_iter.c
 build $build_dir/file_util.o: cc ./AoC_C_utils/src/file_util.c
+build $build_dir/hashmap.o: cc ./hashmap.c/hashmap.c
 
 build a.out: link $
+    $build_dir/day3.o $
     $build_dir/day1.o $
     $build_dir/day2.o $
     $build_dir/main.o $
@@ -29,4 +32,5 @@ build a.out: link $
     $build_dir/bitfield.o $
     $build_dir/deque.o $
     $build_dir/str_split_iter.o $
-    $build_dir/file_util.o
+    $build_dir/file_util.o $
+    $build_dir/hashmap.o

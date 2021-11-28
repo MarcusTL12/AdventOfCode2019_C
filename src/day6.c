@@ -18,9 +18,11 @@ static int node_cmp(const void *a, const void *b, void *udata) {
     return memcmp(a, b, 3);
 }
 
-static bool print_nodes(const void *node, void *udata) {
-    printf("%.*s -> %.*s;    depth: %i\n", 3, node, 3, node + 3,
-           *((int *)(node + 6)));
+static bool print_nodes(const void *node_, void *udata) {
+    node_t *node = (node_t *)node_;
+
+    printf("%.*s -> %.*s;    depth: %i\n", 3, node->name, 3, node->orbit,
+           node->orbit_depth);
     return true;
 }
 
@@ -62,7 +64,7 @@ static int traverse_from(struct hashmap *graph, node_t *node) {
             node->orbit_depth = traverse_from(graph, node2) + 1;
             return node->orbit_depth;
         } else {
-            return 0;
+            return 1;
         }
     }
 }
@@ -79,8 +81,6 @@ void d6p1() {
 
     struct hashmap *graph = make_graph(inp);
 
-    // hashmap_scan(graph, print_nodes, NULL);
-
     size_t amt_nodes = hashmap_count(graph);
 
     node_t **nodes = malloc(amt_nodes * sizeof(node_t *));
@@ -92,24 +92,8 @@ void d6p1() {
     int total = 0;
 
     for (size_t i = 0; i < amt_nodes; i++) {
-        int l = traverse_from(graph, nodes[i]);
-
-        // printf("l: %i\n", l);
-
-        total += l + 1;
+        total += traverse_from(graph, nodes[i]);
     }
-
-    // hashmap_scan(graph, print_nodes, NULL);
-
-    // hashmap_scan(graph, collect_keys, data);
-
-    // node_t lookup, *node;
-
-    // memcpy(lookup.name, "H\0\0", 3);
-
-    // node = hashmap_get(graph, &lookup);
-
-    // traverse_from(graph, node);
 
     printf("Total: %i\n", total);
 

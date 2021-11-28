@@ -10,7 +10,10 @@ stdlib = "libc"
 debug = len(sys.argv) >= 2 and sys.argv[1] == "debug"
 excecutable_name = "a.out"
 
-link_libraries = ["-lpcre2-8", "-lcrypto"]
+link_libraries = [
+    "-lpcre2-8",
+    "-lcrypto"
+]
 
 link_lib_string = link_libraries[0]
 

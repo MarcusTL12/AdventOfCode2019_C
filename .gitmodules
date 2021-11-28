@@ -1,0 +1,3 @@
+[submodule "AoC_C_utils"]
+	path = AoC_C_utils
+	url = https://github.com/MarcusTL12/AoC_C_utils

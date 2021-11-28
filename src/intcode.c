@@ -18,7 +18,7 @@ intcode_machine intcode_from_string(char *s) {
     machine.halted = false;
 
     while (*s) {
-        int i = atoi(s);
+        int64_t i = atoll(s);
         vec_push(&machine.program, &i);
         while (isdigit(*s)) s++;
         while (!isdigit(*s) && *s) s++;

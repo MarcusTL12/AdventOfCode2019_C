@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdbool.h": "c",
-        "deque.h": "c"
+        "deque.h": "c",
+        "typeinfo": "c"
     }
 }

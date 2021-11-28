@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "../AoC_C_utils/src/file_util.h"
+#include "../AoC_C_utils/src/vector.h"
 #include "../hashmap.c/hashmap.h"
 
 typedef struct {
@@ -18,11 +19,15 @@ static int node_cmp(const void *a, const void *b, void *udata) {
     return memcmp(a, b, 3);
 }
 
-static bool print_nodes(const void *node_, void *udata) {
-    node_t *node = (node_t *)node_;
-
+static void show_node(void *node_) {
+    node_t *node = *(node_t **)node_;
     printf("%.*s -> %.*s;    depth: %i\n", 3, node->name, 3, node->orbit,
            node->orbit_depth);
+}
+
+static bool print_nodes(const void *node_, void *udata) {
+    node_t *node = (void *)node_;
+    show_node(&node);
     return true;
 }
 
@@ -102,4 +107,57 @@ void d6p1() {
     free(inp);
 }
 
-void d6p2() {}
+static node_t **get_path(struct hashmap *graph, node_t *node) {
+    vec_t v = vec_create(sizeof(node_t *));
+
+    node_t lookup;
+
+    lookup.orbit_depth = 0;
+
+    do {
+        vec_push(&v, &node);
+        memcpy(lookup.name, node->orbit, 3);
+        node = hashmap_get(graph, &lookup);
+    } while (node);
+
+    node_t **rev_path = v.data, **path = malloc(sizeof(node_t *) * v.len);
+
+    for (size_t i = 0, j = v.len - 1; i < v.len; i++, j--) {
+        path[i] = rev_path[j];
+    }
+
+    vec_free(&v);
+
+    return path;
+}
+
+void d6p2() {
+    char *inp = file_read_full("input/day6/input");
+
+    struct hashmap *graph = make_graph(inp);
+
+    node_t lookup;
+    memcpy(lookup.name, "YOU", 3);
+    node_t *you = hashmap_get(graph, &lookup);
+    node_t **path_you = get_path(graph, you);
+    memcpy(lookup.name, "SAN", 3);
+    node_t *san = hashmap_get(graph, &lookup);
+    node_t **path_san = get_path(graph, hashmap_get(graph, &lookup));
+
+    node_t *common;
+
+    for (size_t i = 0; path_you[i] == path_san[i]; i++) {
+        common = path_you[i];
+    }
+
+    free(path_you);
+    free(path_san);
+
+    int ans = traverse_from(graph, you) + traverse_from(graph, san) -
+              2 * traverse_from(graph, common) - 2;
+
+    printf("Dist: %i\n", ans);
+
+    hashmap_free(graph);
+    free(inp);
+}

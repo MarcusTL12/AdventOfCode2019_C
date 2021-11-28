@@ -1,1 +1,5 @@
 build
+.ninja_deps
+.ninja_log
+a.out
+build.ninja

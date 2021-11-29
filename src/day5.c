@@ -14,9 +14,10 @@ void d5p1() {
 
     int64_t x;
 
-    while (intcode_recieve(&machine, &x)) {
-        printf("%ld\n", x);
-    }
+    while (intcode_recieve(&machine, &x))
+        ;
+
+    printf("%ld\n", x);
 
     intcode_free(&machine);
 }

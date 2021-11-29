@@ -20,8 +20,8 @@ intcode_machine intcode_from_string(char *s) {
     while (*s) {
         int64_t i = atoll(s);
         vec_push(&machine.program, &i);
-        while (isdigit(*s)) s++;
-        while (!isdigit(*s) && *s) s++;
+        while (isdigit(*s) || *s == '-') s++;
+        while (!isdigit(*s) && *s != '-' && *s) s++;
     }
 
     return machine;
@@ -39,6 +39,28 @@ void intcode_free(intcode_machine *machine) {
     vec_free(&machine->program);
     deque_free(&machine->inp_queue);
     deque_free(&machine->out_queue);
+}
+
+intcode_machine intcode_clone(intcode_machine *machine) {
+    intcode_machine new_machine;
+
+    new_machine.program = vec_clone(&machine->program);
+    new_machine.inp_queue = deque_clone(&machine->inp_queue);
+    new_machine.out_queue = deque_clone(&machine->out_queue);
+    new_machine.pc = machine->pc;
+    new_machine.relbase = machine->relbase;
+    new_machine.halted = machine->halted;
+
+    return new_machine;
+}
+
+void intcode_reset(intcode_machine *machine, vec_t *program) {
+    vec_copy(&machine->program, program);
+    deque_clear(&machine->inp_queue);
+    deque_clear(&machine->out_queue);
+    machine->pc = 0;
+    machine->relbase = 0;
+    machine->halted = false;
 }
 
 int64_t *intcode_getmem(intcode_machine *machine, size_t i) {

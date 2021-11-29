@@ -24,3 +24,6 @@ void intcode_send(intcode_machine *machine, int64_t v);
 bool intcode_recieve(intcode_machine *machine, int64_t *dest);
 
 void intcode_run(intcode_machine *machine);
+
+intcode_machine intcode_clone(intcode_machine *machine);
+void intcode_reset(intcode_machine *machine, vec_t *program);

@@ -86,6 +86,6 @@ if not debug:
     subprocess.run(run_command)
     t = time() - t
     print("-" * len(s) * 2)
-    print(f"Run time: {t:.3f} s")
+    print(f"Run time: {t:.4f} s")
 else:
     subprocess.call(f"gdb {excecutable_name}", shell=True)

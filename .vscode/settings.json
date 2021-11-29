@@ -3,6 +3,11 @@
         "stdbool.h": "c",
         "deque.h": "c",
         "typeinfo": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "file_util.h": "c",
+        "atomic": "c",
+        "*.tcc": "c",
+        "istream": "c",
+        "ostream": "c"
     }
 }

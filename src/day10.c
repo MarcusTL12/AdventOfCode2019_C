@@ -99,7 +99,6 @@ static void find_visible(char *map, size_t width, size_t height, size_t x,
     for (size_t i = 0; i < height; i++) {
         for (size_t j = 0; j < width; j++) {
             if (bitfield_get(set, i * width + height)) {
-                
             }
         }
     }
@@ -119,7 +118,7 @@ void d10p2() {
     size_t set_ints = 1 + (width * height - 1) / 64;
     uint64_t *set = malloc(set_ints * sizeof(uint64_t));
 
-    find_visible(map, width, height, x, y, &vis_buf, set);
+    find_visible(map, width, height, x, y, set, &vis_buf);
 
     vec_free(&vis_buf);
     free(map);

@@ -20,7 +20,7 @@ void d9p1() {
 }
 
 void d9p2() {
-        intcode_machine machine = intcode_from_file("input/day9/input");
+    intcode_machine machine = intcode_from_file("input/day9/input");
 
     intcode_send(&machine, 2);
 

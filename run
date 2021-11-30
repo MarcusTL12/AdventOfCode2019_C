@@ -12,8 +12,7 @@ excecutable_name = "a.out"
 
 link_libraries = [
     "-lpcre2-8",
-    "-lcrypto",
-    "-lm"
+    "-lcrypto"
 ]
 
 link_lib_string = link_libraries[0]

@@ -8,6 +8,8 @@
         "atomic": "c",
         "*.tcc": "c",
         "istream": "c",
-        "ostream": "c"
+        "ostream": "c",
+        "math.h": "c",
+        "cstdint": "c"
     }
 }

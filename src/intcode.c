@@ -65,8 +65,8 @@ void intcode_reset(intcode_machine *machine, vec_t *program) {
 
 int64_t *intcode_getmem(intcode_machine *machine, size_t i) {
     if (i >= machine->program.len) {
-        for (size_t j = machine->program.len; j < i; j++) {
-            int64_t zero = 0;
+        int64_t zero = 0;
+        for (size_t j = machine->program.len; j <= i; j++) {
             vec_push(&machine->program, &zero);
         }
     }

@@ -10,6 +10,7 @@
         "istream": "c",
         "ostream": "c",
         "math.h": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "regex_util.h": "c"
     }
 }

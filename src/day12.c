@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "../AoC_C_utils/src/file_util.h"
+#include "../AoC_C_utils/src/number_theory.h"
 #include "../AoC_C_utils/src/regex_util.h"
 #include "../AoC_C_utils/src/show.h"
 #include "../AoC_C_utils/src/vector.h"
@@ -105,4 +106,44 @@ void d12p1() {
     free(velocities);
 }
 
-void d12p2() {}
+void d12p2() {
+    int64_t *coords, *velocities;
+    size_t amt_moons =
+        load_init_state("input/day12/input", &coords, &velocities);
+
+    size_t bytes = sizeof(int64_t) * amt_moons * 3;
+
+    int64_t *orig_coords = malloc(bytes), *orig_velocities = malloc(bytes);
+
+    memcpy(orig_coords, coords, bytes);
+    memcpy(orig_velocities, velocities, bytes);
+
+    int64_t x_period = 0, y_period = 0, z_period = 0;
+
+    do {
+        x_period++;
+        do_step(coords, velocities, amt_moons);
+    } while (memcmp(coords, orig_coords, sizeof(int64_t) * amt_moons) ||
+             memcmp(velocities, orig_velocities, sizeof(int64_t) * amt_moons));
+    do {
+        y_period++;
+        do_step(coords + amt_moons, velocities + amt_moons, amt_moons);
+    } while (memcmp(coords + amt_moons, orig_coords + amt_moons,
+                    sizeof(int64_t) * amt_moons) ||
+             memcmp(velocities + amt_moons, orig_velocities + amt_moons,
+                    sizeof(int64_t) * amt_moons));
+    do {
+        z_period++;
+        do_step(coords + amt_moons * 2, velocities + amt_moons * 2, amt_moons);
+    } while (memcmp(coords + amt_moons * 2, orig_coords + amt_moons * 2,
+                    sizeof(int64_t) * amt_moons) ||
+             memcmp(velocities + amt_moons * 2, orig_velocities + amt_moons * 2,
+                    sizeof(int64_t) * amt_moons));
+
+    printf("%ld\n", lcm(lcm(x_period, y_period), z_period));
+
+    free(orig_velocities);
+    free(orig_coords);
+    free(coords);
+    free(velocities);
+}

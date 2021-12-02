@@ -11,6 +11,7 @@
         "ostream": "c",
         "math.h": "c",
         "cstdint": "c",
-        "regex_util.h": "c"
+        "regex_util.h": "c",
+        "stdarg.h": "c"
     }
 }

@@ -80,12 +80,12 @@ if not debug:
 
     s = f"Running {excecutable_name}:"
     print(s)
-    print("-" * len(s) * 2)
+    print("=" * len(s) * 2)
 
     t = time()
     subprocess.run(run_command)
     t = time() - t
-    print("-" * len(s) * 2)
+    print("=" * len(s) * 2)
     print(f"Run time: {t:.4f} s")
 else:
     pass

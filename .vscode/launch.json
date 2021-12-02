@@ -10,8 +10,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
             "cwd": "${workspaceFolder}",
-            "args": [],
+            "args": ["12", "1"],
             "MIMode": "gdb",
+            "preLaunchTask": "debug build"
         }
     ]
 }

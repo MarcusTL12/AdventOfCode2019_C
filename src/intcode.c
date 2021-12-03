@@ -81,6 +81,17 @@ bool intcode_recieve(intcode_machine *machine, int64_t *dest) {
     return deque_pop_front(&machine->out_queue, dest);
 }
 
+size_t intcode_recieve_multiple(intcode_machine *machine, int64_t *dest,
+                                size_t amt) {
+    size_t n = 0;
+
+    while (amt-- && intcode_recieve(machine, dest++)) {
+        n += 1;
+    }
+
+    return n;
+}
+
 static int64_t pow10(size_t e) {
     int64_t ans = 1;
     while (e) {

@@ -23,6 +23,10 @@ int64_t *intcode_getmem(intcode_machine *machine, size_t i);
 void intcode_send(intcode_machine *machine, int64_t v);
 bool intcode_recieve(intcode_machine *machine, int64_t *dest);
 
+// amt = -1 gives "infinite"
+size_t intcode_recieve_multiple(intcode_machine *machine, int64_t *dest,
+                                size_t amt);
+
 void intcode_run(intcode_machine *machine);
 
 intcode_machine intcode_clone(intcode_machine *machine);

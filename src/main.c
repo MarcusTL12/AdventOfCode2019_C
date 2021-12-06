@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "days.h"
 
@@ -22,6 +23,11 @@ int main(int argc, char **argv) {
 
         int index = 2 * day + part;
 
+        clock_t start = clock();
         days[index]();
+        clock_t diff = clock() - start;
+        clock_t secs = diff / CLOCKS_PER_SEC, rem = diff % CLOCKS_PER_SEC;
+        double ms = ((double)(rem * 1000)) / ((double)CLOCKS_PER_SEC);
+        printf("Took %ld s, %f ms\n", secs, ms);
     }
 }

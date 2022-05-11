@@ -88,7 +88,7 @@ static int64_t update_board(char *board, intcode_machine *machine, size_t width,
     return ball_x;
 }
 
-#define animate
+// #define animate
 
 void d13p2() {
 #ifdef animate

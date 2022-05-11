@@ -82,7 +82,7 @@ static size_t load_init_state(char *filename, int64_t **coords,
     free(inp);
 
     *velocities = malloc(sizeof(int64_t) * amt_moons * 3);
-    memset(*velocities, 0, sizeof(int64_t) * amt_moons);
+    memset(*velocities, 0, sizeof(int64_t) * amt_moons * 3);
 
     return amt_moons;
 }

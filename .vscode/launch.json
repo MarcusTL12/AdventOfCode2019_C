@@ -5,13 +5,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "C debug",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/a.out",
+            "name": "Debug",
+            "program": "${workspaceFolder}/build/aoc/aoc",
+            "args": [
+                "all"
+            ],
             "cwd": "${workspaceFolder}",
-            "args": ["13", "2"],
-            "MIMode": "gdb",
             "preLaunchTask": "debug build"
         }
     ]

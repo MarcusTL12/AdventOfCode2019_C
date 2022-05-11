@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/file_util.h"
-#include "../AoC_C_utils/src/number_theory.h"
-#include "../AoC_C_utils/src/regex_util.h"
-#include "../AoC_C_utils/src/show.h"
-#include "../AoC_C_utils/src/vector.h"
+#include "aoc_util/file_util.h"
+#include "aoc_util/number_theory.h"
+#include "aoc_util/regex_util.h"
+#include "aoc_util/show.h"
+#include "aoc_util/vector.h"
 
 // takes in only one axis
 static void do_step(int64_t *coords, int64_t *velocities, size_t moons) {

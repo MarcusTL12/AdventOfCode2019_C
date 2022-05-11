@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/bitfield.h"
-#include "../AoC_C_utils/src/file_util.h"
-#include "../AoC_C_utils/src/number_theory.h"
-#include "../AoC_C_utils/src/vector.h"
+#include "aoc_util/bitfield.h"
+#include "aoc_util/file_util.h"
+#include "aoc_util/number_theory.h"
+#include "aoc_util/vector.h"
 
 static char *parse_input(char *filename, size_t *width, size_t *height) {
     char *inp = file_read_full(filename);

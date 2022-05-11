@@ -3,8 +3,8 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#include "../AoC_C_utils/src/deque.h"
-#include "../AoC_C_utils/src/vector.h"
+#include "aoc_util/deque.h"
+#include "aoc_util/vector.h"
 
 typedef struct {
     vec_t program;

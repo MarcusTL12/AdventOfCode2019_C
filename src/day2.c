@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/file_util.h"
-#include "../AoC_C_utils/src/show.h"
-#include "../AoC_C_utils/src/vector.h"
+#include "aoc_util/file_util.h"
+#include "aoc_util/show.h"
+#include "aoc_util/vector.h"
 
 static void run_code(int *prog) {
     bool halted = false;

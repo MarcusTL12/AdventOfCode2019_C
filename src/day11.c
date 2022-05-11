@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/bitfield.h"
-#include "../hashmap.c/hashmap.h"
+#include "aoc_util/bitfield.h"
+#include "aoc_util/hashmap.h"
 #include "intcode.h"
 
 static uint64_t point_hash(const void *p, uint64_t s0, uint64_t s1) {

@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../AoC_C_utils/src/deque.h"
-#include "../AoC_C_utils/src/show.h"
+#include "aoc_util/deque.h"
+#include "aoc_util/show.h"
 #include "intcode.h"
 
 void d5p1() {

@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../AoC_C_utils/src/show.h"
+#include "aoc_util/show.h"
 #include "intcode.h"
 
 void d9p1() {

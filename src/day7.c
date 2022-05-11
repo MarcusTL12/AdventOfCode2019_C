@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/combinatorics.h"
-#include "../AoC_C_utils/src/show.h"
-#include "../AoC_C_utils/src/vector.h"
+#include "aoc_util/combinatorics.h"
+#include "aoc_util/show.h"
+#include "aoc_util/vector.h"
 #include "intcode.h"
 
 const size_t N = 5;

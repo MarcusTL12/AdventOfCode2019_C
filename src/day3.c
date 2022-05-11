@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../AoC_C_utils/src/file_util.h"
-#include "../hashmap.c/hashmap.h"
+#include "aoc_util/file_util.h"
+#include "aoc_util/hashmap.h"
 
 typedef struct {
     int x, y, steps;

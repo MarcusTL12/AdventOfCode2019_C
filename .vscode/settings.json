@@ -12,6 +12,7 @@
         "math.h": "c",
         "cstdint": "c",
         "regex_util.h": "c",
-        "stdarg.h": "c"
+        "stdarg.h": "c",
+        "vector.h": "c"
     }
 }

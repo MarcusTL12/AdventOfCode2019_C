@@ -13,6 +13,8 @@
         "cstdint": "c",
         "regex_util.h": "c",
         "stdarg.h": "c",
-        "vector.h": "c"
+        "vector.h": "c",
+        "intcode.h": "c",
+        "point.h": "c"
     }
 }

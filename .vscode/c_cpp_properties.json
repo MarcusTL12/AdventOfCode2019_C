@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/build/aoc_util/Release/include/",
+                "${workspaceFolder}/AoC_C_utils/include/",
+                "${workspaceFolder}/AoC_C_utils/hashmap.c/"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang-12",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

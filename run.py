@@ -8,7 +8,10 @@ from time import time
 ind = 1
 
 if len(sys.argv) >= 2 and sys.argv[1] == "c":
+    t = time()
     subprocess.call("./compile.py")
+    t = time() - t
+    print(f"Compilation time: {t:.4f} s")
     ind += 1
 
 excecutable_name = "./build/aoc/aoc"

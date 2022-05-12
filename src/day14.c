@@ -189,4 +189,34 @@ void d14p1() {
     free(inp);
 }
 
-void d14p2() {}
+void d14p2() {
+    char *inp = file_read_full("input/day14/input");
+    struct hashmap *recipe = parse_recipe(inp);
+
+    int64_t available_ore = 1000000000000;
+
+    int64_t low = 1, high = 2;
+
+    while (makefuel(recipe, high) < available_ore) {
+        low = high;
+        high <<= 1;
+    }
+
+    while (high - low > 1) {
+        int64_t mid = (high + low) / 2;
+        int64_t ore = makefuel(recipe, mid);
+        if (ore > available_ore) {
+            high = mid;
+        } else if (ore < available_ore) {
+            low = mid;
+        } else {
+            low = mid;
+            break;
+        }
+    }
+
+    printf("Can make %li fuel\n", low);
+
+    hashmap_free(recipe);
+    free(inp);
+}

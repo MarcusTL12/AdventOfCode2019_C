@@ -131,13 +131,19 @@ static int64_t makefuel(struct hashmap *recipe, int64_t amt) {
 
     recipe_entry_t *entry;
     ingredient_t ing;
-    for (size_t i = 0; hashmap_iter(recipe, &i, &entry);) {
+    ing.amt = 0;
+    for (size_t i = 0; hashmap_iter(recipe, &i, (void **)&entry);) {
         ing.name = entry->output.name;
         ing.name_len = entry->output.name_len;
-        ing.amt = 0;
         hashmap_set(curprod, &ing);
         hashmap_set(cursurplus, &ing);
     }
+
+    ing.name = "ORE";
+    ing.name_len = 3;
+
+    hashmap_set(curprod, &ing);
+    hashmap_set(cursurplus, &ing);
 
     ing.name = "FUEL";
     ing.name_len = 4;
@@ -145,7 +151,7 @@ static int64_t makefuel(struct hashmap *recipe, int64_t amt) {
 
     make_rec(curprod, cursurplus, recipe, ing);
 
-    ing.name = "ORD";
+    ing.name = "ORE";
     ing.name_len = 3;
 
     ingredient_t *ore = hashmap_get(curprod, &ing);
@@ -158,13 +164,13 @@ static int64_t makefuel(struct hashmap *recipe, int64_t amt) {
     return ans;
 }
 
-static void ing_show(void *ing_) {
-    ingredient_t *ing = (ingredient_t *)ing_;
-    printf("%li %.*s", ing->amt, (int)ing->name_len, ing->name);
-}
+// static void ing_show(void *ing_) {
+//     ingredient_t *ing = (ingredient_t *)ing_;
+//     printf("%li %.*s", ing->amt, (int)ing->name_len, ing->name);
+// }
 
 void d14p1() {
-    char *inp = file_read_full("input/day14/ex1");
+    char *inp = file_read_full("input/day14/input");
     struct hashmap *recipe = parse_recipe(inp);
 
     // recipe_entry_t *entry;

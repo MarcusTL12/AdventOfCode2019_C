@@ -164,23 +164,9 @@ static int64_t makefuel(struct hashmap *recipe, int64_t amt) {
     return ans;
 }
 
-// static void ing_show(void *ing_) {
-//     ingredient_t *ing = (ingredient_t *)ing_;
-//     printf("%li %.*s", ing->amt, (int)ing->name_len, ing->name);
-// }
-
 void d14p1() {
     char *inp = file_read_full("input/day14/input");
     struct hashmap *recipe = parse_recipe(inp);
-
-    // recipe_entry_t *entry;
-    // for (size_t i = 0; hashmap_iter(recipe, &i, (void **)&entry);) {
-    //     ing_show(&entry->output);
-
-    //     printf(" <== ");
-    //     vec_show(&entry->input, ing_show);
-    //     printf("\n");
-    // }
 
     int64_t ans = makefuel(recipe, 1);
     printf("Need %li ore\n", ans);

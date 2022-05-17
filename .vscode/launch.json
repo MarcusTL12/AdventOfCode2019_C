@@ -10,8 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/build/aoc/aoc",
             "args": [
-                "14",
-                "1"
+                "15"
             ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "debug build"

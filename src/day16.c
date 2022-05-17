@@ -1,4 +1,5 @@
 #include <ctype.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -44,4 +45,51 @@ void d16p1() {
     free(inp);
 }
 
-void d16p2() {}
+void d16p2() {
+    char *inp = file_read_full("input/day16/input");
+
+    size_t index;
+
+    {
+        char tmp = inp[7];
+        inp[7] = 0;
+        index = atoll(inp);
+        inp[7] = tmp;
+    }
+
+    size_t len = strlen(inp);
+    while (!isdigit(inp[len - 1])) len--;
+
+    int *signal = malloc(sizeof(int) * len);
+
+    for (size_t i = 0; i < len; i++) {
+        signal[i] = inp[i] - '0';
+    }
+
+    size_t actual_len = 10000 * len - index;
+    int *actual_signal = malloc(sizeof(int) * actual_len);
+
+    for (size_t i = index; i < 10000 * len; i++) {
+        size_t j = i - index;
+        actual_signal[j] = signal[i % len];
+    }
+
+    for (size_t j = 0; j < 100; j++) {
+        for (int64_t i = actual_len - 2; i >= 0; i--) {
+            actual_signal[i] += actual_signal[i + 1];
+            actual_signal[i] %= 10;
+        }
+    }
+
+    char ans[8];
+
+    for (size_t i = 0; i < 8; i++) {
+        ans[i] = '0' + actual_signal[i];
+    }
+
+    printf("%.*s\n", 8, ans);
+
+    free(actual_signal);
+    free(signal);
+    free(inp);
+}

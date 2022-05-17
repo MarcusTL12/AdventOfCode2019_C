@@ -4,6 +4,8 @@
 
 #include "intcode.h"
 
+// #define animate
+
 void d13p1() {
     intcode_machine machine = intcode_from_file("input/day13/input");
 
@@ -87,8 +89,6 @@ static int64_t update_board(char *board, intcode_machine *machine, size_t width,
 
     return ball_x;
 }
-
-// #define animate
 
 void d13p2() {
 #ifdef animate

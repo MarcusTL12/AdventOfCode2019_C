@@ -31,3 +31,7 @@ void intcode_run(intcode_machine *machine);
 
 intcode_machine intcode_clone(intcode_machine *machine);
 void intcode_reset(intcode_machine *machine, vec_t *program);
+
+static size_t intcode_out_len(intcode_machine *machine) {
+    return machine->out_queue.amt_elements;
+}

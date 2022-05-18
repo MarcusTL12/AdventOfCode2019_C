@@ -31,10 +31,13 @@ void d15p1();
 void d15p2();
 void d16p1();
 void d16p2();
+void d17p1();
+void d17p2();
 
-#define AMT_DAYS 16
+#define AMT_DAYS 17
 
-void (*days[])() = {d1p1,  d1p2,  d2p1,  d2p2,  d3p1,  d3p2,  d4p1,  d4p2,
-                    d5p1,  d5p2,  d6p1,  d6p2,  d7p1,  d7p2,  d8p1,  d8p2,
-                    d9p1,  d9p2,  d10p1, d10p2, d11p1, d11p2, d12p1, d12p2,
-                    d13p1, d13p2, d14p1, d14p2, d15p1, d15p2, d16p1, d16p2};
+void (*days[])() = {d1p1,  d1p2,  d2p1,  d2p2,  d3p1,  d3p2,  d4p1,
+                    d4p2,  d5p1,  d5p2,  d6p1,  d6p2,  d7p1,  d7p2,
+                    d8p1,  d8p2,  d9p1,  d9p2,  d10p1, d10p2, d11p1,
+                    d11p2, d12p1, d12p2, d13p1, d13p2, d14p1, d14p2,
+                    d15p1, d15p2, d16p1, d16p2, d17p1, d17p2};

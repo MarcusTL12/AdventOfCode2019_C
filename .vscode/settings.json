@@ -17,6 +17,8 @@
         "intcode.h": "c",
         "point.h": "c",
         "bitfield.h": "c",
-        "ctype.h": "c"
+        "ctype.h": "c",
+        "hashmap.h": "c",
+        "show.h": "c"
     }
 }

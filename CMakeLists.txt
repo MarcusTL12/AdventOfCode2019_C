@@ -28,7 +28,7 @@ add_executable(
     src/day16.c
     src/day17.c
     src/day18.c
-    # src/day19.c
+    src/day19.c
     # src/day20.c
     # src/day21.c
     # src/day22.c

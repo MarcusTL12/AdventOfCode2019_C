@@ -34,4 +34,6 @@ void d19p1() {
     intcode_free(&machine);
 }
 
-void d19p2() {}
+void d19p2() {
+    
+}

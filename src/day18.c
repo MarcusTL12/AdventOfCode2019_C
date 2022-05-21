@@ -45,8 +45,6 @@ typedef struct {
     int64_t data;
 } cell_t;
 
-const static point2i DIRS[] = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-
 static void find_keys_bfs(char *maze, size_t w, point2i start, deque_t *queue,
                           point2i *keys, uint64_t collected_keys,
                           struct hashmap *visited) {
@@ -60,7 +58,7 @@ static void find_keys_bfs(char *maze, size_t w, point2i start, deque_t *queue,
 
     for (cell_t curcell; deque_pop_front(queue, &curcell);) {
         for (size_t i = 0; i < 4; i++) {
-            cell_t nextcell = {point2i_add(curcell.pos, DIRS[i]),
+            cell_t nextcell = {point2i_add(curcell.pos, DIRS2i4[i]),
                                curcell.data + 1};
             char c = maze[nextcell.pos.y * w + nextcell.pos.x];
             if (c != '#' && !hashmap_get(visited, &nextcell)) {
@@ -219,7 +217,7 @@ void d18p2() {
 
     maze[start.x + start.y * w] = '#';
     for (size_t i = 0; i < 4; i++) {
-        point2i d = DIRS[i];
+        point2i d = DIRS2i4[i];
         maze[start.x + d.x + (start.y + d.y) * w] = '#';
     }
 

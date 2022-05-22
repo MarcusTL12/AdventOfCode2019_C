@@ -19,6 +19,7 @@
         "bitfield.h": "c",
         "ctype.h": "c",
         "hashmap.h": "c",
-        "show.h": "c"
+        "show.h": "c",
+        "hashmap_util.h": "c"
     }
 }

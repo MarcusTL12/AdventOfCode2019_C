@@ -10,7 +10,7 @@
             "name": "Debug",
             "program": "${workspaceFolder}/build/aoc/aoc",
             "args": [
-                "22", "1"
+                "22"
             ],
             "cwd": "${workspaceFolder}",
             "preLaunchTask": "debug build"

@@ -34,7 +34,7 @@ add_executable(
     src/day22.c
     src/day23.c
     src/day24.c
-    # src/day25.c
+    src/day25.c
 )
 
 target_link_libraries(aoc aoc_util pthread pcre2-8)
